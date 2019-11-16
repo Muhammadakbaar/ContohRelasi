@@ -1,4 +1,4 @@
-package steamdom.master;
+package steamdom.backend;
 
 import io.micronaut.runtime.Micronaut;
 

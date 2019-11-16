@@ -1,50 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package steamdom.master.model;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+package steamdom.backend.model;
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 
 @Entity
 @Table(name = "classes")
 public class Classes {
-    
-    public Classes(){
-
-    }
-
-    // public Classes(@NotNull String name){
-    //     this.class_name = name;
-    // }
-
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @ManyToMany
-    @JoinColumn(name = "id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
+
     //
-    @ManyToMany
-    @JoinColumn (name="id_academic")
+    @ManyToOne
+    @JoinColumn (name="id_academic",referencedColumnName="id", insertable = false, updatable = false)
     private Academic academic;
     private String id_academic;
     //
