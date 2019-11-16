@@ -46,4 +46,26 @@ public class ClassesController{
         }
     
     }
+
+    @Post("/")
+    public String create(@Body Classes classes) {
+
+        try {
+
+            Classes result = classesRepository.save(classes);
+
+            ClassesResponse response = new ClassesResponse("ok", "Berhasil menambahkan classes", result);
+
+            return new Gson().toJson(response);
+
+
+        } catch(Exception e) {
+            String message = e.getMessage();
+
+            ClassesResponse response = new ClassesResponse("error", message);
+
+            return new Gson().toJson(response);
+        }
+    }
+
 }

@@ -45,6 +45,25 @@ public class AcademicController{
         }
     }
 
-   
+    @Post("/")
+    public String create(@Body Academic academic) {
+
+        try {
+
+            Academic result = academicRepository.save(academic);
+
+            AcademicResponse response = new AcademicResponse("ok", "Berhasil menambahkan Academic", result);
+
+            return new Gson().toJson(response);
+
+
+        } catch(Exception e) {
+            String message = e.getMessage();
+
+            AcademicResponse response = new AcademicResponse("error", message);
+
+            return new Gson().toJson(response);
+        }
+    }
 
 }

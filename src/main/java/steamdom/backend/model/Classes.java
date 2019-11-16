@@ -7,24 +7,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "classes")
 public class Classes {
+    @OneToOne(optional=false)
+    @JoinColumn (name="id_academic",referencedColumnName="id", insertable = false, updatable = false)
+    private Academic academic;
+
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
-
-    //
-    @ManyToOne
-    @JoinColumn (name="id_academic",referencedColumnName="id", insertable = false, updatable = false)
-    private Academic academic;
+    @NotNull(message = "Kode classes harus diisi.")
     private String id_academic;
-    //
     @NotNull(message = "Nama Kelas harus diisi.")
     @Column(name = "name")
     private String name;
